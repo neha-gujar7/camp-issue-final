@@ -1,0 +1,451 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Firebase Config Helper - Step 5.3</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
+            background: #ffffff;
+            min-height: 100vh;
+            padding: 20px;
+        }
+        .container {
+            max-width: 800px;
+            margin: 0 auto;
+            background: white;
+            border-radius: 12px;
+            box-shadow: 0 10px 40px rgba(0,0,0,0.2);
+            padding: 40px;
+        }
+        h1 {
+            color: #333;
+            margin-bottom: 10px;
+            font-size: 28px;
+        }
+        .subtitle {
+            color: #666;
+            margin-bottom: 30px;
+            font-size: 16px;
+        }
+        .step-box {
+            background: #f8f9fa;
+            border-left: 4px solid #4285f4;
+            padding: 20px;
+            margin: 20px 0;
+            border-radius: 4px;
+        }
+        .step-box h3 {
+            color: #4285f4;
+            margin-bottom: 10px;
+        }
+        .step-box ol {
+            margin-left: 20px;
+            line-height: 1.8;
+        }
+        .step-box li {
+            margin: 8px 0;
+        }
+        .config-form {
+            background: #f8f9fa;
+            padding: 25px;
+            border-radius: 8px;
+            margin: 30px 0;
+        }
+        .form-group {
+            margin: 15px 0;
+        }
+        .form-group label {
+            display: block;
+            font-weight: 600;
+            color: #333;
+            margin-bottom: 8px;
+            font-size: 14px;
+        }
+        .form-group input {
+            width: 100%;
+            padding: 12px;
+            border: 2px solid #e0e0e0;
+            border-radius: 6px;
+            font-family: 'Courier New', monospace;
+            font-size: 13px;
+            transition: border-color 0.3s;
+        }
+        .form-group input:focus {
+            outline: none;
+            border-color: #4285f4;
+        }
+        .btn {
+            background: #4285f4;
+            color: white;
+            border: none;
+            padding: 14px 28px;
+            border-radius: 6px;
+            font-size: 16px;
+            font-weight: 600;
+            cursor: pointer;
+            width: 100%;
+            margin-top: 10px;
+            transition: background 0.3s;
+        }
+        .btn:hover {
+            background: #3367d6;
+        }
+        .btn-secondary {
+            background: #34a853;
+            margin-top: 10px;
+        }
+        .btn-secondary:hover {
+            background: #2d8f47;
+        }
+        .result-box {
+            margin-top: 20px;
+            padding: 15px;
+            border-radius: 6px;
+            display: none;
+        }
+        .result-box.success {
+            background: #e8f5e9;
+            border: 2px solid #4caf50;
+            color: #2e7d32;
+            display: block;
+        }
+        .result-box.error {
+            background: #ffebee;
+            border: 2px solid #f44336;
+            color: #c62828;
+            display: block;
+        }
+        .code-preview {
+            background: #263238;
+            color: #aed581;
+            padding: 15px;
+            border-radius: 6px;
+            margin: 15px 0;
+            font-family: 'Courier New', monospace;
+            font-size: 12px;
+            overflow-x: auto;
+            white-space: pre-wrap;
+        }
+        .link-button {
+            display: inline-block;
+            background: #4285f4;
+            color: white;
+            padding: 12px 24px;
+            text-decoration: none;
+            border-radius: 6px;
+            margin: 10px 5px;
+            font-weight: 600;
+        }
+        .link-button:hover {
+            background: #3367d6;
+        }
+        .info-box {
+            background: #e3f2fd;
+            border-left: 4px solid #2196f3;
+            padding: 15px;
+            margin: 20px 0;
+            border-radius: 4px;
+        }
+        .checklist {
+            list-style: none;
+            margin-left: 0;
+        }
+        .checklist li {
+            padding: 8px 0;
+            padding-left: 30px;
+            position: relative;
+        }
+        .checklist li:before {
+            content: "☐";
+            position: absolute;
+            left: 0;
+            font-size: 20px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>🔑 Firebase Config Helper - Step 5.3</h1>
+        <p class="subtitle">Easy way to get and save your Firebase configuration</p>
+
+        <div class="step-box">
+            <h3>📍 Step 1: Get Config from Firebase Console</h3>
+            <ol>
+                <li>Go to: <strong>https://console.firebase.google.com/</strong></li>
+                <li>Click the <strong>gear icon</strong> ⚙️ (top left)</li>
+                <li>Click <strong>"Project settings"</strong></li>
+                <li>Scroll to <strong>"Your apps"</strong> section</li>
+                <li>Click the <strong>`</>`</strong> (web) icon</li>
+                <li>If not registered: Enter app name → Click "Register app"</li>
+                <li>Copy the <code>firebaseConfig</code> values</li>
+            </ol>
+        </div>
+
+        <div class="info-box">
+            <strong>💡 Tip:</strong> You need 6 values: apiKey, authDomain, projectId, storageBucket, messagingSenderId, and appId
+        </div>
+
+        <div class="config-form">
+            <h3 style="margin-bottom: 20px;">📝 Enter Your Firebase Config</h3>
+            
+            <div class="form-group">
+                <label>API Key:</label>
+                <input type="text" id="apiKey" placeholder="AIzaSyC...">
+            </div>
+            
+            <div class="form-group">
+                <label>Auth Domain:</label>
+                <input type="text" id="authDomain" placeholder="your-project.firebaseapp.com">
+            </div>
+            
+            <div class="form-group">
+                <label>Project ID:</label>
+                <input type="text" id="projectId" placeholder="your-project-id">
+            </div>
+            
+            <div class="form-group">
+                <label>Storage Bucket:</label>
+                <input type="text" id="storageBucket" placeholder="your-project.appspot.com">
+            </div>
+            
+            <div class="form-group">
+                <label>Messaging Sender ID:</label>
+                <input type="text" id="messagingSenderId" placeholder="123456789012">
+            </div>
+            
+            <div class="form-group">
+                <label>App ID:</label>
+                <input type="text" id="appId" placeholder="1:123456789012:web:abcdef">
+            </div>
+            
+            <div class="form-group">
+                <label>Admin Email (optional):</label>
+                <input type="email" id="adminEmail" placeholder="admin@campus.edu" value="admin@campus.edu">
+            </div>
+
+            <button class="btn" onclick="generateConfig()">💾 Generate Config File</button>
+            <button class="btn btn-secondary" onclick="validateConfig()">✅ Validate Config</button>
+            
+            <div id="result"></div>
+        </div>
+
+        <div id="preview" style="display: none;">
+            <h3>📄 Generated Config:</h3>
+            <div class="code-preview" id="configPreview"></div>
+            <button class="btn btn-secondary" onclick="downloadConfig()">⬇️ Download firebase.js</button>
+            <a href="index.html" class="link-button">🚀 Test App</a>
+        </div>
+
+        <div class="step-box">
+            <h3>✅ Checklist</h3>
+            <ul class="checklist">
+                <li>Got config from Firebase Console</li>
+                <li>Entered all 6 values above</li>
+                <li>Validated config</li>
+                <li>Downloaded firebase.js file</li>
+                <li>Replaced js/firebase.js in project</li>
+                <li>Tested the app</li>
+            </ul>
+        </div>
+    </div>
+
+    <script>
+        let generatedConfig = '';
+
+        function validateConfig() {
+            const apiKey = document.getElementById('apiKey').value.trim();
+            const authDomain = document.getElementById('authDomain').value.trim();
+            const projectId = document.getElementById('projectId').value.trim();
+            const storageBucket = document.getElementById('storageBucket').value.trim();
+            const messagingSenderId = document.getElementById('messagingSenderId').value.trim();
+            const appId = document.getElementById('appId').value.trim();
+
+            const resultDiv = document.getElementById('result');
+            
+            if (!apiKey || !authDomain || !projectId || !storageBucket || !messagingSenderId || !appId) {
+                resultDiv.className = 'result-box error';
+                resultDiv.innerHTML = '❌ Please fill in all 6 Firebase config fields!';
+                return false;
+            }
+
+            if (apiKey === 'YOUR_API_KEY' || projectId === 'YOUR_PROJECT_ID') {
+                resultDiv.className = 'result-box error';
+                resultDiv.innerHTML = '❌ Please replace placeholder values with your actual Firebase config!';
+                return false;
+            }
+
+            if (!apiKey.startsWith('AIza')) {
+                resultDiv.className = 'result-box error';
+                resultDiv.innerHTML = '⚠️ API Key should start with "AIza". Please check your config.';
+                return false;
+            }
+
+            resultDiv.className = 'result-box success';
+            resultDiv.innerHTML = '✅ Config looks valid! Click "Generate Config File" to create firebase.js';
+            return true;
+        }
+
+        function generateConfig() {
+            if (!validateConfig()) {
+                return;
+            }
+
+            const apiKey = document.getElementById('apiKey').value.trim();
+            const authDomain = document.getElementById('authDomain').value.trim();
+            const projectId = document.getElementById('projectId').value.trim();
+            const storageBucket = document.getElementById('storageBucket').value.trim();
+            const messagingSenderId = document.getElementById('messagingSenderId').value.trim();
+            const appId = document.getElementById('appId').value.trim();
+            const adminEmail = document.getElementById('adminEmail').value.trim() || 'admin@campus.edu';
+
+            generatedConfig = `// Firebase Configuration
+// Replace these values with your Firebase project config
+// Get your config from: https://console.firebase.google.com/ → Project Settings → Your apps
+const firebaseConfig = {
+  apiKey: "${apiKey}",
+  authDomain: "${authDomain}",
+  projectId: "${projectId}",
+  storageBucket: "${storageBucket}",
+  messagingSenderId: "${messagingSenderId}",
+  appId: "${appId}"
+};
+
+// Check if Firebase is properly configured
+function isFirebaseConfigured() {
+  return firebaseConfig.apiKey !== "YOUR_API_KEY" && 
+         firebaseConfig.projectId !== "YOUR_PROJECT_ID" &&
+         firebaseConfig.apiKey.length > 10;
+}
+
+// Initialize Firebase only if configured
+let firebaseInitialized = false;
+try {
+  if (isFirebaseConfigured()) {
+    firebase.initializeApp(firebaseConfig);
+    firebaseInitialized = true;
+  } else {
+    console.warn('⚠️ Firebase not configured! Please visit setup.html to configure.');
+  }
+} catch (error) {
+  console.error('Firebase initialization error:', error);
+  firebaseInitialized = false;
+}
+
+// Initialize Firebase services (only if initialized)
+let auth, db, storage;
+if (firebaseInitialized && typeof firebase !== 'undefined') {
+  auth = firebase.auth();
+  db = firebase.firestore();
+  storage = firebase.storage();
+} else {
+  // Use demo mode (localStorage) - works without Firebase!
+  console.log('📦 Running in DEMO MODE (localStorage) - No Firebase needed!');
+  
+  // Load demo mode services (they should be loaded by demo-mode.js)
+  if (typeof demoAuth !== 'undefined' && typeof demoDb !== 'undefined' && typeof demoStorage !== 'undefined') {
+    auth = demoAuth;
+    db = demoDb;
+    storage = demoStorage;
+  } else {
+    console.warn('Demo mode services not loaded. Make sure demo-mode.js is loaded before firebase.js');
+    // Fallback if demo-mode.js not loaded yet
+    auth = { 
+      onAuthStateChanged: () => {},
+      signOut: () => Promise.resolve(),
+      createUserWithEmailAndPassword: () => Promise.reject(new Error('Firebase not configured')),
+      signInWithEmailAndPassword: () => Promise.reject(new Error('Firebase not configured'))
+    };
+    db = {
+      collection: () => ({
+        add: () => Promise.reject(new Error('Firebase not configured')),
+        get: () => Promise.reject(new Error('Firebase not configured')),
+        doc: () => ({
+          update: () => Promise.reject(new Error('Firebase not configured'))
+        }),
+        where: () => ({
+          orderBy: () => ({
+            get: () => Promise.reject(new Error('Firebase not configured'))
+          })
+        }),
+        orderBy: () => ({
+          get: () => Promise.reject(new Error('Firebase not configured'))
+        })
+      })
+    };
+    storage = {
+      ref: () => ({
+        put: () => Promise.reject(new Error('Firebase not configured')),
+        getDownloadURL: () => Promise.reject(new Error('Firebase not configured'))
+      })
+    };
+  }
+}
+
+// Admin email (can be moved to Firestore for better security)
+const ADMIN_EMAIL = "${adminEmail}";
+
+// Show demo mode banner if Firebase not configured
+function showFirebaseErrorBanner() {
+  if (!isFirebaseConfigured() && typeof document !== 'undefined') {
+    // Remove existing banner if any
+    const existingBanner = document.getElementById('firebase-error-banner');
+    if (existingBanner) return;
+    
+    const banner = document.createElement('div');
+    banner.id = 'firebase-error-banner';
+    banner.style.cssText = 'position:fixed;top:0;left:0;right:0;background:#4285f4;color:white;padding:12px;text-align:center;z-index:10000;box-shadow:0 2px 4px rgba(0,0,0,0.2);font-family:sans-serif;font-size:14px;';
+    banner.innerHTML = '📦 <strong>DEMO MODE:</strong> Running with localStorage (no Firebase needed). Data persists in your browser. <a href="setup.html" style="color:#ffeb3b;text-decoration:underline;margin-left:10px;font-weight:bold;">Setup Firebase →</a>';
+    document.body.insertBefore(banner, document.body.firstChild);
+    
+    // Add padding to body to account for banner
+    document.body.style.paddingTop = '50px';
+  }
+}
+
+// Show banner on page load
+if (typeof document !== 'undefined') {
+  if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', showFirebaseErrorBanner);
+  } else {
+    showFirebaseErrorBanner();
+  }
+}
+`;
+
+            document.getElementById('configPreview').textContent = generatedConfig;
+            document.getElementById('preview').style.display = 'block';
+            
+            const resultDiv = document.getElementById('result');
+            resultDiv.className = 'result-box success';
+            resultDiv.innerHTML = '✅ Config generated! Click "Download firebase.js" below, then replace js/firebase.js in your project folder.';
+        }
+
+        function downloadConfig() {
+            if (!generatedConfig) {
+                alert('Please generate config first!');
+                return;
+            }
+
+            const blob = new Blob([generatedConfig], { type: 'text/javascript' });
+            const url = URL.createObjectURL(blob);
+            const a = document.createElement('a');
+            a.href = url;
+            a.download = 'firebase.js';
+            a.click();
+            URL.revokeObjectURL(url);
+
+            const resultDiv = document.getElementById('result');
+            resultDiv.className = 'result-box success';
+            resultDiv.innerHTML = '✅ File downloaded! Now:<br>1. Go to your project folder: <code>c:\\Users\\SAMA\\Desktop\\campus_h2s\\js\\</code><br>2. Replace <code>firebase.js</code> with the downloaded file<br>3. Refresh your browser and test!';
+        }
+    </script>
+</body>
+</html>
+

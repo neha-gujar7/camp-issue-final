@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Report Issue - Smart Campus Reporter</title>
+    <link rel="stylesheet" href="css/style.css">
+    <!-- Firebase SDK -->
+    <script src="https://www.gstatic.com/firebasejs/9.22.0/firebase-app-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/9.22.0/firebase-auth-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/9.22.0/firebase-firestore-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/9.22.0/firebase-storage-compat.js"></script>
+</head>
+
+<body>
+    <nav class="navbar">
+        <div class="nav-container">
+            <h2>🏫 Smart Campus Reporter</h2>
+            <div class="nav-right">
+                <a href="feed.html" class="btn btn-secondary">🌐 Feed</a>
+                <a href="announcements.html" class="btn btn-secondary">📢 Announcements</a>
+                <span class="user-info">Logged in as: <strong id="userEmail"></strong></span>
+                <button onclick="logout()" class="btn btn-secondary">Logout</button>
+            </div>
+        </div>
+    </nav>
+
+    <div class="container">
+        <div class="page-header">
+            <h1>Report a Campus Issue</h1>
+            <p>Help us improve campus facilities by reporting issues you encounter</p>
+        </div>
+
+        <div class="content-grid">
+            <!-- Issue Form -->
+            <div class="form-section">
+                <div class="card">
+                    <h2>Submit New Issue</h2>
+                    <form id="issueForm" onsubmit="submitIssue(event)">
+                        <div class="form-group">
+                            <label for="title">Issue Title *</label>
+                            <input type="text" id="title" required placeholder="e.g., Broken Light near Library">
+                        </div>
+
+                        <div class="form-group">
+                            <label for="description">Description *</label>
+                            <textarea id="description" required rows="4"
+                                placeholder="Provide detailed description of the issue..."></textarea>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="category">Category *</label>
+                            <select id="category" required>
+                                <option value="">Select a category</option>
+                                <option value="Electricity">Electricity</option>
+                                <option value="Plumbing">Plumbing</option>
+                                <option value="Cleaning">Cleaning</option>
+                                <option value="Infrastructure">Infrastructure</option>
+                                <option value="Safety">Safety</option>
+                                <option value="Mess">Mess</option>
+                                <option value="Other">Other</option>
+                            </select>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="location">Location *</label>
+                            <input type="text" id="location" required
+                                placeholder="e.g., Library Block, Building A, Room 101">
+                        </div>
+
+                        <div class="form-group">
+                            <label for="visibility">Who can see this issue? *</label>
+                            <select id="visibility" required>
+                                <option value="private">Only Me</option>
+                                <option value="public">All Students</option>
+                            </select>
+                        </div>
+
+
+
+
+                        <div class="form-group">
+                            <label for="issueImage">Image (Optional)</label>
+                            <input type="file" id="issueImage" accept="image/*">
+                            <img id="imagePreview"
+                                style="display: none; max-width: 100%; margin-top: 10px; border-radius: 8px;">
+                        </div>
+
+                        <div id="errorMsg" class="error-message"></div>
+                        <div id="successMsg" class="success-message"></div>
+
+                        <button type="submit" id="submitBtn" class="btn btn-primary">Submit Issue</button>
+                    </form>
+                </div>
+            </div>
+
+            <!-- User's Issues -->
+            <!-- User & Public Issues -->
+            <div class="issues-section">
+
+                <!-- My Issues -->
+                <div class="card">
+                    <h2>My Reported Issues</h2>
+                    <div id="userIssues" class="issues-list">
+                        <p class="loading">Loading your issues...</p>
+                    </div>
+                </div>
+
+                <!-- Public Issues -->
+                <div class="card">
+                    <h2>All Public Issues</h2>
+                    <div id="publicIssues" class="issues-list">
+                        <p class="loading">Loading public issues...</p>
+                    </div>
+                </div>
+
+            </div>
+
+        </div>
+    </div>
+
+    <script src="js/demo-mode.js"></script>
+    <script src="js/firebase.js"></script>
+    <script src="js/auth.js"></script>
+    <script src="js/report.js"></script>
+</body>
+
+</html>

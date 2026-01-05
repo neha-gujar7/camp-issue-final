@@ -1,0 +1,396 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Firebase Setup Wizard - Smart Campus Reporter</title>
+    <link rel="stylesheet" href="css/style.css">
+    <style>
+        .setup-container {
+            max-width: 900px;
+            margin: 40px auto;
+            padding: 30px;
+            background: white;
+            border-radius: 12px;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+        }
+        .step {
+            margin: 30px 0;
+            padding: 20px;
+            background: #f8f9fa;
+            border-radius: 8px;
+            border-left: 4px solid #4285f4;
+        }
+        .step-number {
+            display: inline-block;
+            width: 30px;
+            height: 30px;
+            background: #4285f4;
+            color: white;
+            border-radius: 50%;
+            text-align: center;
+            line-height: 30px;
+            font-weight: bold;
+            margin-right: 10px;
+        }
+        .config-input {
+            width: 100%;
+            padding: 12px;
+            margin: 8px 0;
+            border: 2px solid #e0e0e0;
+            border-radius: 6px;
+            font-family: 'Courier New', monospace;
+            font-size: 14px;
+        }
+        .config-input:focus {
+            outline: none;
+            border-color: #4285f4;
+        }
+        .btn-copy {
+            background: #34a853;
+            color: white;
+            border: none;
+            padding: 8px 16px;
+            border-radius: 6px;
+            cursor: pointer;
+            margin-left: 10px;
+        }
+        .btn-copy:hover {
+            background: #2d8f47;
+        }
+        .btn-test {
+            background: #4285f4;
+            color: white;
+            border: none;
+            padding: 12px 24px;
+            border-radius: 6px;
+            cursor: pointer;
+            font-size: 16px;
+            margin-top: 20px;
+        }
+        .btn-test:hover {
+            background: #3367d6;
+        }
+        .success-box {
+            background: #e8f5e9;
+            border: 2px solid #4caf50;
+            color: #2e7d32;
+            padding: 15px;
+            border-radius: 6px;
+            margin: 15px 0;
+        }
+        .error-box {
+            background: #ffebee;
+            border: 2px solid #f44336;
+            color: #c62828;
+            padding: 15px;
+            border-radius: 6px;
+            margin: 15px 0;
+        }
+        .code-block {
+            background: #263238;
+            color: #aed581;
+            padding: 15px;
+            border-radius: 6px;
+            overflow-x: auto;
+            font-family: 'Courier New', monospace;
+            font-size: 13px;
+            margin: 10px 0;
+        }
+        .link-button {
+            display: inline-block;
+            background: #4285f4;
+            color: white;
+            padding: 12px 24px;
+            text-decoration: none;
+            border-radius: 6px;
+            margin: 10px 5px;
+        }
+        .link-button:hover {
+            background: #3367d6;
+        }
+        .screenshot-hint {
+            font-style: italic;
+            color: #666;
+            margin-top: 10px;
+        }
+    </style>
+</head>
+<body>
+    <div class="setup-container">
+        <h1>🔥 Firebase Setup Wizard</h1>
+        <p>Follow these steps to configure Firebase for your Smart Campus Reporter app.</p>
+
+        <div class="step">
+            <h3><span class="step-number">1</span>Create Firebase Project</h3>
+            <p>If you haven't created a Firebase project yet:</p>
+            <a href="https://console.firebase.google.com/" target="_blank" class="link-button">Open Firebase Console</a>
+            <ol>
+                <li>Click <strong>"Add project"</strong> or <strong>"Create a project"</strong></li>
+                <li>Project name: <code>smart-campus-reporter</code> (or any name)</li>
+                <li>Click <strong>Continue</strong></li>
+                <li><strong>Disable</strong> Google Analytics (optional for hackathon)</li>
+                <li>Click <strong>Create project</strong></li>
+                <li>Wait ~30 seconds, then click <strong>Continue</strong></li>
+            </ol>
+        </div>
+
+        <div class="step">
+            <h3><span class="step-number">2</span>Enable Authentication</h3>
+            <ol>
+                <li>In Firebase Console, click <strong>"Authentication"</strong> in left menu</li>
+                <li>Click <strong>"Get started"</strong> (if first time)</li>
+                <li>Click <strong>"Sign-in method"</strong> tab</li>
+                <li>Click <strong>"Email/Password"</strong></li>
+                <li>Toggle <strong>"Enable"</strong> to ON</li>
+                <li>Click <strong>"Save"</strong></li>
+            </ol>
+            <div class="success-box">✅ Email/Password authentication should now be enabled</div>
+        </div>
+
+        <div class="step">
+            <h3><span class="step-number">3</span>Create Firestore Database</h3>
+            <ol>
+                <li>Click <strong>"Firestore Database"</strong> in left menu</li>
+                <li>Click <strong>"Create database"</strong></li>
+                <li>Select <strong>"Start in test mode"</strong> (for hackathon demo)</li>
+                <li>Click <strong>Next</strong></li>
+                <li>Choose a location (pick closest to you)</li>
+                <li>Click <strong>Enable</strong></li>
+            </ol>
+            <div class="success-box">✅ Firestore database should now be created</div>
+        </div>
+
+        <div class="step">
+            <h3><span class="step-number">4</span>Enable Storage</h3>
+            <ol>
+                <li>Click <strong>"Storage"</strong> in left menu</li>
+                <li>Click <strong>"Get started"</strong></li>
+                <li>Select <strong>"Start in test mode"</strong></li>
+                <li>Click <strong>Next</strong></li>
+                <li>Use same location as Firestore</li>
+                <li>Click <strong>Done</strong></li>
+                <li>If prompted, click <strong>"Create bucket"</strong></li>
+            </ol>
+            <div class="success-box">✅ Storage should now be enabled</div>
+        </div>
+
+        <div class="step">
+            <h3><span class="step-number">5</span>Get Firebase Config</h3>
+            <ol>
+                <li>Click the <strong>gear icon</strong> ⚙️ (top left) → <strong>"Project settings"</strong></li>
+                <li>Scroll down to <strong>"Your apps"</strong> section</li>
+                <li>Click the <strong>`</> </strong> (web) icon to add a web app</li>
+                <li>App nickname: <code>Smart Campus Reporter</code></li>
+                <li><strong>DO NOT</strong> check "Also set up Firebase Hosting"</li>
+                <li>Click <strong>"Register app"</strong></li>
+                <li>You'll see a code block with <code>firebaseConfig</code></li>
+            </ol>
+            <p class="screenshot-hint">💡 Tip: Keep Firebase Console open in another tab while filling the form below</p>
+        </div>
+
+        <div class="step">
+            <h3><span class="step-number">6</span>Enter Your Firebase Config</h3>
+            <p>Copy each value from Firebase Console and paste it below:</p>
+            
+            <label>API Key:</label>
+            <input type="text" id="apiKey" class="config-input" placeholder="AIzaSy...">
+            
+            <label>Auth Domain:</label>
+            <input type="text" id="authDomain" class="config-input" placeholder="your-project.firebaseapp.com">
+            
+            <label>Project ID:</label>
+            <input type="text" id="projectId" class="config-input" placeholder="your-project-id">
+            
+            <label>Storage Bucket:</label>
+            <input type="text" id="storageBucket" class="config-input" placeholder="your-project.appspot.com">
+            
+            <label>Messaging Sender ID:</label>
+            <input type="text" id="messagingSenderId" class="config-input" placeholder="123456789">
+            
+            <label>App ID:</label>
+            <input type="text" id="appId" class="config-input" placeholder="1:123456789:web:abcdef">
+            
+            <label>Admin Email (optional):</label>
+            <input type="email" id="adminEmail" class="config-input" placeholder="admin@campus.edu" value="admin@campus.edu">
+            
+            <button class="btn-test" onclick="saveConfig()">💾 Save Configuration</button>
+            
+            <div id="configResult"></div>
+        </div>
+
+        <div class="step">
+            <h3><span class="step-number">7</span>Test Configuration</h3>
+            <p>After saving, test your configuration:</p>
+            <button class="btn-test" onclick="testConfig()">🧪 Test Firebase Connection</button>
+            <div id="testResult"></div>
+        </div>
+
+        <div class="step">
+            <h3><span class="step-number">8</span>Ready to Go!</h3>
+            <p>Once configuration is saved and tested, you can start using the app:</p>
+            <a href="index.html" class="link-button">🚀 Go to Login Page</a>
+        </div>
+    </div>
+
+    <script>
+        // Load existing config if available
+        window.addEventListener('DOMContentLoaded', function() {
+            // Try to read existing firebase.js to populate fields
+            fetch('js/firebase.js')
+                .then(response => response.text())
+                .then(text => {
+                    const apiKeyMatch = text.match(/apiKey:\s*"([^"]+)"/);
+                    const authDomainMatch = text.match(/authDomain:\s*"([^"]+)"/);
+                    const projectIdMatch = text.match(/projectId:\s*"([^"]+)"/);
+                    const storageBucketMatch = text.match(/storageBucket:\s*"([^"]+)"/);
+                    const messagingSenderIdMatch = text.match(/messagingSenderId:\s*"([^"]+)"/);
+                    const appIdMatch = text.match(/appId:\s*"([^"]+)"/);
+                    const adminEmailMatch = text.match(/ADMIN_EMAIL\s*=\s*"([^"]+)"/);
+                    
+                    if (apiKeyMatch && apiKeyMatch[1] !== 'YOUR_API_KEY') {
+                        document.getElementById('apiKey').value = apiKeyMatch[1];
+                    }
+                    if (authDomainMatch && authDomainMatch[1] !== 'YOUR_AUTH_DOMAIN') {
+                        document.getElementById('authDomain').value = authDomainMatch[1];
+                    }
+                    if (projectIdMatch && projectIdMatch[1] !== 'YOUR_PROJECT_ID') {
+                        document.getElementById('projectId').value = projectIdMatch[1];
+                    }
+                    if (storageBucketMatch && storageBucketMatch[1] !== 'YOUR_STORAGE_BUCKET') {
+                        document.getElementById('storageBucket').value = storageBucketMatch[1];
+                    }
+                    if (messagingSenderIdMatch && messagingSenderIdMatch[1] !== 'YOUR_MESSAGING_SENDER_ID') {
+                        document.getElementById('messagingSenderId').value = messagingSenderIdMatch[1];
+                    }
+                    if (appIdMatch && appIdMatch[1] !== 'YOUR_APP_ID') {
+                        document.getElementById('appId').value = appIdMatch[1];
+                    }
+                    if (adminEmailMatch) {
+                        document.getElementById('adminEmail').value = adminEmailMatch[1];
+                    }
+                })
+                .catch(err => console.log('Could not load existing config'));
+        });
+
+        function saveConfig() {
+            const apiKey = document.getElementById('apiKey').value.trim();
+            const authDomain = document.getElementById('authDomain').value.trim();
+            const projectId = document.getElementById('projectId').value.trim();
+            const storageBucket = document.getElementById('storageBucket').value.trim();
+            const messagingSenderId = document.getElementById('messagingSenderId').value.trim();
+            const appId = document.getElementById('appId').value.trim();
+            const adminEmail = document.getElementById('adminEmail').value.trim() || 'admin@campus.edu';
+
+            // Validate
+            if (!apiKey || !authDomain || !projectId || !storageBucket || !messagingSenderId || !appId) {
+                document.getElementById('configResult').innerHTML = 
+                    '<div class="error-box">❌ Please fill in all Firebase configuration fields!</div>';
+                return;
+            }
+
+            // Create config content
+            const configContent = `// Firebase Configuration
+// Replace these values with your Firebase project config
+const firebaseConfig = {
+  apiKey: "${apiKey}",
+  authDomain: "${authDomain}",
+  projectId: "${projectId}",
+  storageBucket: "${storageBucket}",
+  messagingSenderId: "${messagingSenderId}",
+  appId: "${appId}"
+};
+
+// Initialize Firebase
+firebase.initializeApp(firebaseConfig);
+
+// Initialize Firebase services
+const auth = firebase.auth();
+const db = firebase.firestore();
+const storage = firebase.storage();
+
+// Admin email (can be moved to Firestore for better security)
+const ADMIN_EMAIL = "${adminEmail}";
+`;
+
+            // Since browsers can't write files directly, we'll download the config file
+            // User needs to replace js/firebase.js with the downloaded file
+            downloadConfig(configContent);
+        }
+
+        function downloadConfig(content) {
+            const blob = new Blob([content], { type: 'text/javascript' });
+            const url = URL.createObjectURL(blob);
+            const a = document.createElement('a');
+            a.href = url;
+            a.download = 'firebase.js';
+            a.click();
+            URL.revokeObjectURL(url);
+            
+            const instructions = `
+                <div class="success-box">
+                    <strong>✅ Configuration file downloaded!</strong><br><br>
+                    <strong>Next steps:</strong><br>
+                    1. The file <code>firebase.js</code> has been downloaded to your Downloads folder<br>
+                    2. Copy it and replace <code>js/firebase.js</code> in your project folder<br>
+                    3. Refresh this page to verify the configuration<br>
+                    4. Then test the connection using the button below<br><br>
+                    <strong>Quick tip:</strong> You can also manually copy the config values from Firebase Console and paste them directly into <code>js/firebase.js</code>
+                </div>
+            `;
+            document.getElementById('configResult').innerHTML = instructions;
+        }
+
+        async function testConfig() {
+            const resultDiv = document.getElementById('testResult');
+            resultDiv.innerHTML = '<div>🔄 Testing Firebase connection...</div>';
+
+            try {
+                // Reload the page to get new config
+                const script = document.createElement('script');
+                script.src = 'https://www.gstatic.com/firebasejs/9.22.0/firebase-app-compat.js';
+                document.head.appendChild(script);
+
+                await new Promise(resolve => setTimeout(resolve, 1000));
+
+                // Check if firebase is available
+                if (typeof firebase === 'undefined') {
+                    throw new Error('Firebase SDK not loaded');
+                }
+
+                // Try to initialize
+                const apiKey = document.getElementById('apiKey').value.trim();
+                const authDomain = document.getElementById('authDomain').value.trim();
+                const projectId = document.getElementById('projectId').value.trim();
+                const storageBucket = document.getElementById('storageBucket').value.trim();
+                const messagingSenderId = document.getElementById('messagingSenderId').value.trim();
+                const appId = document.getElementById('appId').value.trim();
+
+                if (!apiKey || apiKey === 'YOUR_API_KEY') {
+                    throw new Error('Please save configuration first!');
+                }
+
+                const testConfig = {
+                    apiKey: apiKey,
+                    authDomain: authDomain,
+                    projectId: projectId,
+                    storageBucket: storageBucket,
+                    messagingSenderId: messagingSenderId,
+                    appId: appId
+                };
+
+                try {
+                    firebase.initializeApp(testConfig);
+                    resultDiv.innerHTML = '<div class="success-box">✅ Firebase connection successful! Your configuration is working correctly.</div>';
+                } catch (err) {
+                    throw new Error('Firebase initialization failed: ' + err.message);
+                }
+
+            } catch (error) {
+                resultDiv.innerHTML = `<div class="error-box">❌ Test failed: ${error.message}<br><small>Make sure you've saved the configuration and all values are correct.</small></div>`;
+            }
+        }
+    </script>
+</body>
+</html>
+

@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Announcements - Smart Campus Reporter</title>
+    <link rel="stylesheet" href="css/style.css">
+    <!-- Firebase SDK -->
+    <script src="https://www.gstatic.com/firebasejs/9.22.0/firebase-app-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/9.22.0/firebase-auth-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/9.22.0/firebase-firestore-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/9.22.0/firebase-storage-compat.js"></script>
+</head>
+<body>
+    <nav class="navbar">
+        <div class="nav-container">
+            <h2>🏫 Smart Campus Reporter</h2>
+            <div class="nav-right">
+                <a href="report.html" class="btn btn-secondary">📝 Report</a>
+                <a href="feed.html" class="btn btn-secondary">🌐 Feed</a>
+                <span class="user-info" id="userInfo">Logged in as: <strong id="userEmail"></strong></span>
+                <button onclick="logout()" class="btn btn-secondary">Logout</button>
+            </div>
+        </div>
+    </nav>
+
+    <div class="container">
+        <div class="page-header">
+            <h1>📢 Campus Announcements</h1>
+            <p>Important updates and notifications from administrators</p>
+        </div>
+
+        <!-- Admin Announcement Form -->
+        <div id="adminAnnouncementForm" class="card" style="display: none;">
+            <h2>Create New Announcement</h2>
+            <form id="announcementForm" onsubmit="submitAnnouncement(event)">
+                <div class="form-group">
+                    <label for="announcementTitle">Title *</label>
+                    <input type="text" id="announcementTitle" required placeholder="e.g., Water Supply Update">
+                </div>
+                <div class="form-group">
+                    <label for="announcementMessage">Message *</label>
+                    <textarea id="announcementMessage" required rows="5" placeholder="Enter announcement details..."></textarea>
+                </div>
+                <div class="form-group">
+                    <label for="announcementIssueId">Related Issue (Optional)</label>
+                    <select id="announcementIssueId">
+                        <option value="">None - General Announcement</option>
+                    </select>
+                </div>
+                <div id="announcementError" class="error-message"></div>
+                <div id="announcementSuccess" class="success-message"></div>
+                <button type="submit" class="btn btn-primary">Post Announcement</button>
+            </form>
+        </div>
+
+        <!-- Announcements List -->
+        <div class="card">
+            <h2>All Announcements</h2>
+            <div id="announcementsList" class="announcements-list">
+                <p class="loading">Loading announcements...</p>
+            </div>
+        </div>
+    </div>
+
+    <script src="js/demo-mode.js"></script>
+    <script src="js/firebase.js"></script>
+    <script src="js/auth.js"></script>
+    <script src="js/announcements.js"></script>
+</body>
+</html>
+

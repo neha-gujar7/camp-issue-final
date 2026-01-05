@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Admin Dashboard - Smart Campus Reporter</title>
+    <link rel="stylesheet" href="css/style.css">
+    <!-- Firebase SDK -->
+    <script src="https://www.gstatic.com/firebasejs/9.22.0/firebase-app-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/9.22.0/firebase-auth-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/9.22.0/firebase-firestore-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/9.22.0/firebase-storage-compat.js"></script>
+</head>
+<body>
+    <nav class="navbar">
+        <div class="nav-container">
+            <h2>🏫 Smart Campus Reporter - Admin</h2>
+            <div class="nav-right">
+                <a href="feed.html" class="btn btn-secondary">🌐 Feed</a>
+                <a href="announcements.html" class="btn btn-secondary">📢 Announcements</a>
+                <span class="user-info">Admin: <strong id="adminEmail"></strong></span>
+                <button onclick="logout()" class="btn btn-secondary">Logout</button>
+            </div>
+        </div>
+    </nav>
+    
+    <div class="container">
+        <div class="page-header">
+            <h1>🧑‍💼 Admin Dashboard</h1>
+            <p>All Campus Issues – Control Panel</p>
+        </div>
+        
+        <!-- Statistics -->
+        <div class="stats-grid">
+            <div class="stat-card">
+                <div class="stat-value" id="statPending">0</div>
+                <div class="stat-label">Pending</div>
+            </div>
+            <div class="stat-card">
+                <div class="stat-value" id="statInProgress">0</div>
+                <div class="stat-label">In Progress</div>
+            </div>
+            <div class="stat-card">
+                <div class="stat-value" id="statResolved">0</div>
+                <div class="stat-label">Resolved</div>
+            </div>
+            <div class="stat-card">
+                <div class="stat-value" id="statTotal">0</div>
+                <div class="stat-label">Total Issues</div>
+            </div>
+        </div>
+        
+        <!-- Filters -->
+        <div class="filters-card">
+            <h3>🔍 Filters & Search</h3>
+            <div class="filters">
+                <div class="filter-group">
+                    <label for="statusFilter">Status:</label>
+                    <select id="statusFilter">
+                        <option value="all">All Status</option>
+                        <option value="Pending">Pending</option>
+                        <option value="In Progress">In Progress</option>
+                    </select>
+                </div>
+                <div class="filter-group">
+                    <label for="categoryFilter">Category:</label>
+                    <select id="categoryFilter">
+                        <option value="all">All Categories</option>
+                        <option value="Electricity">Electricity</option>
+                        <option value="Plumbing">Plumbing</option>
+                        <option value="Cleaning">Cleaning</option>
+                        <option value="Infrastructure">Infrastructure</option>
+                        <option value="Safety">Safety</option>
+                        <option value="Mess">Mess</option>
+                        <option value="Other">Other</option>
+                    </select>
+                </div>
+                <div class="filter-group">
+                    <label for="priorityFilter">Priority:</label>
+                    <select id="priorityFilter">
+                        <option value="all">All Priorities</option>
+                        <option value="Critical">🔴 Critical</option>
+                        <option value="High">🟠 High</option>
+                        <option value="Medium">🟡 Medium</option>
+                        <option value="Low">🟢 Low</option>
+                    </select>
+                </div>
+            </div>
+        </div>
+        
+        <!-- Active Issues Control Panel -->
+        <div class="card">
+            <h2>📋 All Campus Issues – Control Panel</h2>
+            <p class="subtitle">Active issues requiring attention</p>
+            <div id="allIssues" class="issues-list">
+                <p class="loading">Loading issues...</p>
+            </div>
+        </div>
+        
+        <!-- Resolved Issues Section -->
+        <div class="card">
+            <h2>✅ Resolved Issues</h2>
+            <p class="subtitle">Past issues that have been resolved</p>
+            <div id="resolvedIssues" class="issues-list resolved-list">
+                <p class="loading">Loading resolved issues...</p>
+            </div>
+        </div>
+    </div>
+    
+    <script src="js/demo-mode.js"></script>
+    <script src="js/firebase.js"></script>
+    <script src="js/auth.js"></script>
+    <script src="js/admin.js"></script>
+</body>
+</html>
+

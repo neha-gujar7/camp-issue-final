@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Issue Details - Smart Campus Reporter</title>
+    <link rel="stylesheet" href="css/style.css">
+    <!-- Firebase SDK -->
+    <script src="https://www.gstatic.com/firebasejs/9.22.0/firebase-app-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/9.22.0/firebase-auth-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/9.22.0/firebase-firestore-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/9.22.0/firebase-storage-compat.js"></script>
+</head>
+<body>
+    <nav class="navbar">
+        <div class="nav-container">
+            <h2>🏫 Smart Campus Reporter</h2>
+            <div class="nav-right">
+                <a href="report.html" class="btn btn-secondary">📝 Report</a>
+                <a href="feed.html" class="btn btn-secondary">🌐 Feed</a>
+                <a href="announcements.html" class="btn btn-secondary">📢 Announcements</a>
+                <span class="user-info">Logged in as: <strong id="userEmail"></strong></span>
+                <button onclick="logout()" class="btn btn-secondary">Logout</button>
+            </div>
+        </div>
+    </nav>
+
+    <div class="container">
+        <div class="page-header">
+            <h1>Issue Details</h1>
+            <p id="issueIdDisplay">Loading issue...</p>
+        </div>
+
+        <!-- Issue Details Card -->
+        <div class="card">
+            <div id="issueDetails">
+                <p class="loading">Loading issue details...</p>
+            </div>
+        </div>
+
+        <!-- Issue Timeline -->
+        <div class="card">
+            <h2>📍 Issue Timeline</h2>
+            <div id="issueTimeline" class="timeline-container">
+                <p class="loading">Loading timeline...</p>
+            </div>
+        </div>
+
+        <!-- Re-open Section (for resolved issues) -->
+        <div id="reopenSection" class="card" style="display: none;">
+            <h2>Issue Resolution Verification</h2>
+            <p id="verificationMessage">Has this issue been resolved?</p>
+            <div id="verificationDeadlineInfo" style="margin-bottom: 15px; padding: 10px; background: #fff3cd; border-radius: 8px; font-size: 14px;"></div>
+            <div class="reopen-buttons">
+                <button onclick="verifyResolution(true)" class="btn btn-success">✅ Yes, Resolved</button>
+                <button onclick="showReopenModal()" class="btn btn-danger">❌ No, Still Facing Issue</button>
+            </div>
+        </div>
+        
+        <!-- Resolution Proof Display -->
+        <div id="resolutionProofSection" class="card" style="display: none;">
+            <h2>Resolution Proof</h2>
+            <div id="resolutionProofContent"></div>
+        </div>
+    </div>
+
+    <script src="js/demo-mode.js"></script>
+    <script src="js/firebase.js"></script>
+    <script src="js/auth.js"></script>
+    <script src="js/issue-detail.js"></script>
+</body>
+</html>
+

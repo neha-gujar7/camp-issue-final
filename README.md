@@ -31,10 +31,8 @@ smart-campus-reporter/
 │   ├── auth.js       # Authentication logic
 │   ├── report.js     # Issue submission
 │   └── admin.js      # Admin dashboard logic
-├── FIREBASE_SETUP_COMPLETE_GUIDE.md  # 🔥 Complete Firebase setup guide
 ├── INNOVATIVE_FEATURES.md            # 💡 Feature suggestions
 ├── QUICK_START.md    # Quick setup guide
-├── MENTOR_GUIDE.md   # Detailed mentor guide
 └── README.md
 ```
 
@@ -49,9 +47,6 @@ smart-campus-reporter/
 3. Follow the step-by-step wizard
 4. Done! Your app is configured
 
-📖 **See [FIREBASE_SETUP_COMPLETE_GUIDE.md](FIREBASE_SETUP_COMPLETE_GUIDE.md) for COMPLETE step-by-step instructions**
-
-💡 **Want to add more features? Check [INNOVATIVE_FEATURES.md](INNOVATIVE_FEATURES.md) for ideas!**
 
 ### Manual Setup
 

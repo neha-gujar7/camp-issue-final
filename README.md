@@ -160,10 +160,3 @@ See [INNOVATIVE_FEATURES.md](INNOVATIVE_FEATURES.md) for:
 
 Built for hackathon demonstration purposes.
 
-## 📚 Documentation
-
-- **[FIREBASE_SETUP_COMPLETE_GUIDE.md](FIREBASE_SETUP_COMPLETE_GUIDE.md)** - Complete Firebase setup with screenshots
-- **[INNOVATIVE_FEATURES.md](INNOVATIVE_FEATURES.md)** - 50+ feature suggestions for enhancement
-- **[QUICK_START.md](QUICK_START.md)** - Quick setup guide
-- **[MENTOR_GUIDE.md](MENTOR_GUIDE.md)** - Detailed mentor guide
-

@@ -148,8 +148,7 @@ See INNOVATIVE FEATURES for:
 - 🔔 Real-time notifications
 - 📊 Advanced analytics
 - 🤖 AI-powered features
-- 📱 PWA support
-- And 50+ more innovative ideas!
+- And you can also contribute for more innovative ideas!
 
 ## 📝 License
 

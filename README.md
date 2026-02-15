@@ -143,7 +143,7 @@ Then visit: `http://localhost:8000`
 
 ## 💡 Future Enhancements
 
-See [INNOVATIVE_FEATURES.md](INNOVATIVE_FEATURES.md) for:
+See INNOVATIVE FEATURES for:
 - 📍 Map integration
 - 🔔 Real-time notifications
 - 📊 Advanced analytics
